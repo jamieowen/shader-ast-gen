@@ -5,6 +5,7 @@ import { transformGlsl } from "./transform-glslify";
 import { createPipeline } from "./transformer";
 import { transformEsm } from "./transform-esm";
 import { writeFiles } from "./write-files";
+import { clangFormat } from "./formatting";
 
 /**
  * Function input inside configuration.
@@ -35,6 +36,7 @@ export interface IFileOutput {
 export const shaderAstGen = (config: IShaderAstGenConfig) => {
   if (config) {
     compileFromConfig(config)
+      .transform(clangFormat())
       .transform(createPipeline(transformGlsl({}), transformEsm({})))
       .transform(writeFiles({ outDir: config.outDir }));
   }

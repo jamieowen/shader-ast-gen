@@ -35,6 +35,7 @@
     "@thi.ng/shader-ast": "^0.12.10",
     "@thi.ng/shader-ast-glsl": "^0.4.10",
     "@thi.ng/transducers": "^8.3.5",
+    "clang-format": "^1.8.0",
     "fs-extra": "^10.1.0"
   }
 }

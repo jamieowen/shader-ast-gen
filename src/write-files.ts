@@ -11,7 +11,6 @@ export const writeFiles = (opts: { outDir: string }) => {
     const path = join(out, file.path);
     ensureDirSync(path);
     const res = join(path, filename);
-    console.log("write : ", res, file.contents);
     writeFileSync(res, file.contents, { encoding: "utf-8" });
 
     return file;
