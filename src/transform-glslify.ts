@@ -1,18 +1,22 @@
-import { map } from "@thi.ng/transducers";
-import { ICompiledAst } from "./compile";
+import { createTransform } from "./transformer";
 
 interface IGlslifyOpts {
   outDir: string;
 }
 
-// export const transformGlslify = () =>
-//   map<ICompiledAst, IFileOutput>((src) => {
-//     // console.log(src.input.basename);
-//     // console.log(src.input.fn);
-//     // console.log(src.input.fn.args);
-//     // console.log(src.input.fn.deps);
-
-//     // console.log(src.gles1, src.gles3);
-//     console.log("to-glslify");
-//     return {};
-//   });
+export const transformGlsl = (opts: any) =>
+  createTransform((source) => {
+    const contents = source.compiled
+      .map((inp) => {
+        return `${inp.gles1}\n#pragma glslify: export(${inp.fn.id})`;
+      })
+      .join("\n\n");
+    return [
+      {
+        contents,
+        basename: source.group,
+        extname: ".glsl",
+        path: "./glsl",
+      },
+    ];
+  });

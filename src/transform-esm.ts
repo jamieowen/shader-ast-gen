@@ -1,15 +1,18 @@
-import { map } from "@thi.ng/transducers";
-import { ICompiledAst } from "./compile";
-import { IFileOutput } from "./shader-ast-gen";
+import { createTransform } from "./transformer";
 
-// const toEsm = () =>
-//   map<ICompiledAst, IFileOutput>(() => {
-//     // console.log(src.input.basename);
-//     // console.log(src.input.fn);
-//     // console.log(src.input.fn.args);
-//     // console.log(src.input.fn.deps);
-
-//     // console.log(src.gles1, src.gles3);
-//     console.log("to-esm");
-//     return {};
-//   });
+export const transformEsm = (opts: any) =>
+  createTransform((source) => {
+    const contents = source.compiled
+      .map((inp) => {
+        return `export const ${inp.fn.id} = \`\n${inp.gles1}\n\``;
+      })
+      .join("\n\n");
+    return [
+      {
+        contents,
+        basename: source.group,
+        extname: ".js",
+        path: "./esm",
+      },
+    ];
+  });

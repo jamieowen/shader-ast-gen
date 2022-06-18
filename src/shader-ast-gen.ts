@@ -1,5 +1,10 @@
 import { Func, Type } from "@thi.ng/shader-ast";
+
 import { compileFromConfig } from "./compile";
+import { transformGlsl } from "./transform-glslify";
+import { createPipeline } from "./transformer";
+import { transformEsm } from "./transform-esm";
+import { writeFiles } from "./write-files";
 
 /**
  * Function input inside configuration.
@@ -29,9 +34,8 @@ export interface IFileOutput {
 
 export const shaderAstGen = (config: IShaderAstGenConfig) => {
   if (config) {
-    const $config = compileFromConfig(config);
-    // $config.transform(toGlslify());
-    // $config.transform(toEsm());
+    compileFromConfig(config)
+      .transform(createPipeline(transformGlsl({}), transformEsm({})))
+      .transform(writeFiles({ outDir: config.outDir }));
   }
-  console.log("OKOK");
 };

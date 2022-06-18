@@ -27,12 +27,14 @@
   },
   "homepage": "https://github.com/jamieowen/shader-ast-gen#readme",
   "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
     "microbundle": "^0.15.0"
   },
   "dependencies": {
     "@thi.ng/rstream": "^7.2.8",
     "@thi.ng/shader-ast": "^0.12.10",
     "@thi.ng/shader-ast-glsl": "^0.4.10",
-    "@thi.ng/transducers": "^8.3.5"
+    "@thi.ng/transducers": "^8.3.5",
+    "fs-extra": "^10.1.0"
   }
 }
