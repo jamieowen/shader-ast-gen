@@ -1,0 +1,38 @@
+{
+  "name": "shader-ast-gen",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "source": "src/index.ts",
+  "exports": {
+    "require": "./dist/shader-ast-gen.cjs",
+    "default": "./dist/shader-ast-gen.modern.js"
+  },
+  "main": "./dist/shader-ast-gen.cjs",
+  "module": "./dist/shader-ast-gen.module.js",
+  "unpkg": "./dist/shader-ast-gen.umd.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "microbundle",
+    "dev": "microbundle watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamieowen/shader-ast-gen.git"
+  },
+  "author": "Jamie Owen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamieowen/shader-ast-gen/issues"
+  },
+  "homepage": "https://github.com/jamieowen/shader-ast-gen#readme",
+  "devDependencies": {
+    "microbundle": "^0.15.0"
+  },
+  "dependencies": {
+    "@thi.ng/rstream": "^7.2.8",
+    "@thi.ng/shader-ast": "^0.12.10",
+    "@thi.ng/shader-ast-glsl": "^0.4.10",
+    "@thi.ng/transducers": "^8.3.5"
+  }
+}
