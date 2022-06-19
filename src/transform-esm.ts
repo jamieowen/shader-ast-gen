@@ -1,4 +1,4 @@
-import { createTransform } from "./transformer";
+import { createTransform } from "./pipeline";
 
 export const transformEsm = (opts: any) =>
   createTransform((source) => {

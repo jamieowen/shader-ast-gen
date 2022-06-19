@@ -1,4 +1,4 @@
-import { createTransform } from "./transformer";
+import { createTransform } from "./pipeline";
 
 interface IGlslifyOpts {
   outDir: string;

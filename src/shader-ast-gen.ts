@@ -13,9 +13,14 @@ import { clangFormat } from "./formatting";
 export interface IFnInput {
   fn: Func<Type>;
   group: string;
+  astOpts?: Partial<{
+    /** Rename options for ast nodes */
+    argRen: string[] | ((arg: string[]) => string[]);
+    idRen: string | ((s: string) => string);
+  }>;
 }
 
-type TransformType = "glslify-1" | "glslify-1" | "esm-1" | "esm-2";
+// type TransformType = "glslify-1" | "glslify-1" | "esm-1" | "esm-2";
 
 /**
  * Provide a list of shader-ast function inputs to compile.
@@ -23,7 +28,6 @@ type TransformType = "glslify-1" | "glslify-1" | "esm-1" | "esm-2";
 export interface IShaderAstGenConfig {
   outDir: string;
   inputs: IFnInput[];
-  transforms: TransformType[];
 }
 
 export interface IFileOutput {
