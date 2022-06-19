@@ -2,7 +2,7 @@ import { Func, Type } from "@thi.ng/shader-ast";
 
 import { compileFromConfig } from "./compile";
 import { transformGlsl } from "./transform-glslify";
-import { createPipeline } from "./transformer";
+import { createPipeline } from "./pipeline";
 import { transformEsm } from "./transform-esm";
 import { writeFiles } from "./write-files";
 import { clangFormat } from "./formatting";

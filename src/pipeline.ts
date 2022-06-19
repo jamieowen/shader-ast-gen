@@ -23,16 +23,6 @@ export const createTransform = (
 
 export type CompiledAstTransfrom = ReturnType<typeof createTransform>;
 
-// const transformer = (transforms: ReturnType<typeof createTransform>[]) => {
-//   return subscription<ICompiledAst, IFileOutput>({
-//     next: (compiled) => {
-//       return "";
-//     },
-//   });
-// };
-
-// const val = [...transformGlsl({})(null)];
-
 export const createPipeline = (...transforms: CompiledAstTransfrom[]) => {
   return comp(
     map<ICompiledAst, IFileOutput[]>((compiled) => {
@@ -43,6 +33,3 @@ export const createPipeline = (...transforms: CompiledAstTransfrom[]) => {
     mapcat((file) => file)
   );
 };
-
-// const transformer = (transforms: ReturnType<typeof createTransform>[]) =>
-//   mapcat<ICompiledAst, IFileOutput>((compile) => transforms.map((t)=>transduce(t, push(), [compile]);));
