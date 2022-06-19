@@ -2,7 +2,6 @@ import { stream } from "@thi.ng/rstream";
 import { walk, allChildren, Func, Type } from "@thi.ng/shader-ast";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
 import { groupByMap, reduce } from "@thi.ng/transducers";
-import { rename } from "fs-extra";
 import { IFnInput, IShaderAstGenConfig } from "./shader-ast-gen";
 
 /**
@@ -12,6 +11,7 @@ export interface ICompiledAst {
   group: string;
   inputs: IFnInput[];
   compiled: {
+    astOpts?: IFnInput["astOpts"];
     fn: IFnInput["fn"];
     gles1: string;
     gles3: string;
@@ -81,7 +81,6 @@ export const compileFromConfig = (config: IShaderAstGenConfig) =>
               // if( typeof inp.astOpts.idRen === 'function' ){
               //   inp.
               // }
-              console.log("FN : ", inp.fn);
               if (typeof inp.astOpts.argRen === "function") {
                 // inp.fn.args.forEach((n, i) => {
                 //   n.id = inp.astOpts.argRen[i];
@@ -92,6 +91,7 @@ export const compileFromConfig = (config: IShaderAstGenConfig) =>
             }
 
             return {
+              astOpts: inp.astOpts,
               fn: inp.fn,
               gles1: gles1(inp.fn),
               gles3: gles3(inp.fn),
